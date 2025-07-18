@@ -1,7 +1,7 @@
 import mysql.connector as sqLtor
 import pandas as pd
 from datetime import date
-sql = sqLtor.connect(host="localhost", user="root", password="Your_Password")
+sql = sqLtor.connect(host="localhost", user="root", password="103033")
 
 class business:
     def __init__(self) -> None:
@@ -11,6 +11,7 @@ class business:
         self.existing_database =[db[0] for db in self.cursor.fetchall()]
         self.DataBase = "menu"
         self.count_number = 0
+        self.db_tables=[]
         if self.DataBase in self.existing_database:
             self.cursor.execute(f"use {self.DataBase}")
         else:
