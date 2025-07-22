@@ -174,13 +174,12 @@ class business:
     def delete_table(self):
         self.cursor.execute("show tables")
         table_count = self.cursor.fetchall()
+        # check if table is empthy or not 
         if not table_count:
             print("No Table Exist!")
             exit()
         else:
-            if self.count_number == 0:
-                business.fetch_tables(self)
-
+            business.fetch_tables(self)
             table_name = input("Which Table You Want To Delete : ")
             if table_name in self.db_tables:
                 priview = input(f"Do you want to preview table {table_name} before deletion (Yes/No): ").capitalize()
@@ -189,7 +188,6 @@ class business:
                     confirmation = input("Are You Sure, You Want to Delete Table (Yes/No): ").capitalize()
                     if confirmation == "Yes":
                         self.cursor.execute(f"drop table {table_name}")
-                        sql.commit()
                         self.cursor.execute(f"delete from table_info where table_name = '{table_name}'")
                         sql.commit()
                         print(f"{table_name} Deleted successfully....")
@@ -231,3 +229,4 @@ if __name__ == "__main__":
         print("invalid Option!")
 
     sql.close()
+
